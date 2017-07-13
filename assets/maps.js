@@ -25,8 +25,10 @@ var mapsVloc = {
 
     makeMarker: function makeMarker(reponse) {
         var jlist = JSON.parse(reponse);
+
         //Init de la carte
         var map = mapsVloc.initMaps();
+
         //Création des marqueurs
         for (var i = 0; i < jlist.length; i++) {
             var marker = new google.maps.Marker({
@@ -41,6 +43,7 @@ var mapsVloc = {
             });
 
             // Gestion des couleurs de marker en fonction des vélos dispo
+
             if (jlist[i].available_bikes >= 10) {
                 marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
             } else if (jlist[i].available_bikes >= 1) {
@@ -50,22 +53,28 @@ var mapsVloc = {
             }
 
             // Gestion des evenements
+
             marker.addListener('click', function (e) {
-                // A factorisé dans une fonction
-                document.getElementById("nom_station").textContent = this.title;
+
+                // Ajout du contenu au tableau
+                document.getElementById("nom_station").textContent = this.title.slice(7);
                 document.getElementById("status_station").textContent = this.status;
                 document.getElementById("adresse_station").textContent = this.address;
                 document.getElementById("place_station").textContent = this.available_bike_stands;
                 document.getElementById("velo_station").textContent = this.available_bikes;
                 document.getElementById("parking_station").textContent = this.bike_stands;
+
+                // Affichage du bouton si il est possible de réserver
+                if (this.available_bikes > 0) {
+                    document.getElementById("buttonValidation").style.display = "block";
+                } else {
+                    document.getElementById("buttonValidation").style.display = "none";
+                };
             });
         };
         //debug
-        console.log(jlist[0]);
-
-
-
-
+        //console.log(jlist[0]);
         //debug
-    },
+    }
+
 }

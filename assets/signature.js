@@ -1,6 +1,10 @@
 'use strict'
 var signature = {
 
+    signatureSetting: {
+        valid: false
+    },
+
     initThis: function InitThis() {
         ctx = document.getElementById('myCanvas').getContext("2d");
 
@@ -33,19 +37,20 @@ var signature = {
             ctx.lineTo(x, y);
             ctx.closePath();
             ctx.stroke();
+            signature.signatureSetting.valid = true;
         }
         lastX = x;
         lastY = y;
+
     },
 
     clearArea: function clearArea() {
         // Use the identity matrix while clearing the canvas
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    }
-
+        signature.signatureSetting.valid = false;
+    },
 }
-
 var mousePressed = false;
 var lastX, lastY;
 var ctx;
