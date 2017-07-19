@@ -5,7 +5,8 @@ var mapsVloc = {
         initPosition: {
             lat: 48.867215942062155,
             lng: 2.346782684326172
-        }
+        },
+        stationActuel: ""
     },
 
 
@@ -42,6 +43,8 @@ var mapsVloc = {
                 bike_stands: jlist[i].bike_stands
             });
 
+
+
             // Gestion des couleurs de marker en fonction des vélos dispo
 
             if (jlist[i].available_bikes >= 10) {
@@ -51,7 +54,6 @@ var mapsVloc = {
             } else {
                 marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
             }
-
             // Gestion des evenements
 
             marker.addListener('click', function (e) {
@@ -63,6 +65,7 @@ var mapsVloc = {
                 document.getElementById("place_station").textContent = this.available_bike_stands;
                 document.getElementById("velo_station").textContent = this.available_bikes;
                 document.getElementById("parking_station").textContent = this.bike_stands;
+                mapsVloc.mapsVlocSetting.stationActuel = this.title.slice(7);
 
                 // Affichage du bouton si il est possible de réserver
                 if (this.available_bikes > 0) {

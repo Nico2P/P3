@@ -3,15 +3,22 @@
 var reservation = {
 
     reservationSetting: {
-        enCours: false
+        enCours: sessionStorage.getItem("enCours"),
+        timeValid: 1200,
+        timeMinutes: "",
+        timeSeconds: ""
     },
 
     validSignature: function validSignature() {
+
         if (signature.signatureSetting.valid === true) {
             // appel enregistrement web storage et mise en place compte a rebour
+            alert("Réservation enregistré")
             signature.clearArea()
-            reservation.reservationSetting.enCours = true;
+            this.reservationSetting.enCours = true;
             reservation.save();
+            location.reload();
+
         } else {
             //affichage message d'erreur
             alert("Merci de signez");
@@ -20,34 +27,45 @@ var reservation = {
 
     save: function save() {
         var dateReservation = new Date().getTime();
+        var dateLimite = dateReservation + 1200000;
         sessionStorage.setItem("enCours", "true");
         sessionStorage.setItem("dateReservation", dateReservation);
+        sessionStorage.setItem("dateLimite", dateLimite);
+        sessionStorage.setItem("stationActuel", mapsVloc.mapsVlocSetting.stationActuel);
+        reservation.validPeriod();
     },
 
     saveExist: function saveExist() {
-        if (sessionStorage.getItem("enCours")) {
+        if (this.reservationSetting.enCours) {
             // Nous pouvons utiliser localStorage
-            reservation.validPeriod();
+            console.log("Réservation en cours");
+            reservation.validPeriod;
         } else {
             // Malheureusement, localStorage n'est pas disponible
-            console.log("NOK")
-            document.getElementById("status").textContent = " Aucune réservation enregistré";
+            console.log("Aucune réservation");
         }
     },
 
     validPeriod: function validPeriod() {
-        var dateNow = new Date().getTime();
-        var dateValide = dateNow + 1200000;
-        sessionStorage.setItem("dateValide", dateValide);
-        if (dateNow - (sessionStorage.getItem("dateValide")) < 1200000) {
-            console.log("reservation valide");
-            console.log(sessionStorage.getItem("dateValide"));
-            console.log(dateNow);
-            console.log((sessionStorage.getItem("dateValide")) - dateNow);
-            var compte = ((dateNow - 1200000) / 1000);
-            document.getElementById("status").textContent = "Temps pour récuperer vôtre vélo : " + compte + " min";
-        } else {
-            console.log("aucune reservation");
-        };
+        // Set the date we're counting down to
+        var countDownDate = sessionStorage.getItem("dateLimite");
+        // Update the count down every 1 second
+        var x = setInterval(function () {
+            // Get todays date and time
+            var now = new Date().getTime();
+            // Find the distance between now an the count down date
+            var distance = countDownDate - now;
+            // Time calculations for minutes and seconds
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            // Display the result in the element with id="demo"
+            document.getElementById("cpt").innerHTML = "Réservation disponible pour : " +
+                minutes + "m " + seconds + "s " + " a la station " + sessionStorage.getItem("stationActuel") + ".";
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("cpt").innerHTML = "Aucune reservation";
+            }
+        }, 1000);
     }
 };
