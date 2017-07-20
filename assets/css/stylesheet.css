@@ -118,7 +118,7 @@ footer {
     position: relative;
     top: 560px;
     left: 900px;
-    width: 100px;
+    min-width: 130px;
     z-index: 2;
 }
 
@@ -166,7 +166,6 @@ footer {
         position: relative;
         top: 560px;
         left: 800px;
-        width: 100px;
         z-index: 2;
     }
 }
@@ -220,7 +219,6 @@ footer {
         position: relative;
         top: 560px;
         left: 600px;
-        width: 100px;
         z-index: 2;
     }
     #titre {
@@ -265,7 +263,6 @@ footer {
         position: relative;
         top: 320px;
         left: 500px;
-        width: 100px;
         z-index: 2;
     }
     #map {
@@ -293,7 +290,6 @@ footer {
         position: relative;
         top: 320px;
         left: 300px;
-        width: 100px;
         z-index: 2;
     }
     #map {
