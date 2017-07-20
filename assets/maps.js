@@ -44,7 +44,8 @@ var mapsVloc = {
             });
 
 
-
+            console.log(jlist[i].status);
+            console.log(jlist[i].title);
             // Gestion des couleurs de marker en fonction des vélos dispo
 
             if (jlist[i].available_bikes >= 10) {
@@ -59,8 +60,12 @@ var mapsVloc = {
             marker.addListener('click', function (e) {
 
                 // Ajout du contenu au tableau
+                if (this.status === "OPEN") {
+                    document.getElementById("status_station").textContent = "Ouvert";
+                } else if (this.status === "CLOSED") {
+                    document.getElementById("status_station").textContent = "Fermé";
+                };
                 document.getElementById("nom_station").textContent = this.title.slice(7);
-                document.getElementById("status_station").textContent = this.status;
                 document.getElementById("adresse_station").textContent = this.address;
                 document.getElementById("place_station").textContent = this.available_bike_stands;
                 document.getElementById("velo_station").textContent = this.available_bikes;

@@ -4,7 +4,7 @@ var reservation = {
 
     reservationSetting: {
         enCours: sessionStorage.getItem("enCours"),
-        timeValid: 1200,
+        timeValid: 1200000,
         timeMinutes: "",
         timeSeconds: ""
     },
@@ -27,7 +27,7 @@ var reservation = {
 
     save: function save() {
         var dateReservation = new Date().getTime();
-        var dateLimite = dateReservation + 1200000;
+        var dateLimite = dateReservation + reservation.reservationSetting.timeValid;
         sessionStorage.setItem("enCours", "true");
         sessionStorage.setItem("dateReservation", dateReservation);
         sessionStorage.setItem("dateLimite", dateLimite);
@@ -58,7 +58,7 @@ var reservation = {
             // Time calculations for minutes and seconds
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            // Display the result in the element with id="demo"
+            // Display the result in the element
             document.getElementById("cpt").innerHTML = "Réservation disponible pour : " +
                 minutes + "m " + seconds + "s " + " a la station " + sessionStorage.getItem("stationActuel") + ".";
             // If the count down is finished, write some text
