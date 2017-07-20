@@ -43,9 +43,6 @@ var mapsVloc = {
                 bike_stands: jlist[i].bike_stands
             });
 
-
-            console.log(jlist[i].status);
-            console.log(jlist[i].title);
             // Gestion des couleurs de marker en fonction des vélos dispo
 
             if (jlist[i].available_bikes >= 10) {

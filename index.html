@@ -54,9 +54,10 @@
         <div class="row">
             <div id="slide-container" class="slider-container z-depth-2">
                 <ul id="slider">
-                    <li class="slide showing"><img src="assets/img/diapo1.png" /></li>
-                    <li class="slide"><img src="assets/img/diapo2.png" /></li>
-                    <li class="slide"><img src="assets/img/diapo3.png" /></li>
+                    <li class="slide showing"><img src="assets/img/diapo1.png" alt="Accueil application" /></li>
+                    <li class="slide"><img src="assets/img/diapo2.png" alt="Info sélection" /></li>
+                    <li class="slide"><img src="assets/img/diapo3.png" alt="Info signature" /></li>
+                    <li class="slide"><img src="assets/img/diapo4.png" alt="Info réservation" /></li>
                 </ul>
                 <div id="control-container">
                     <button class="control" id="previous"><i id="previous-icone" class="fa fa-backward" aria-hidden="true"></i></button>
@@ -107,16 +108,19 @@
                                 <td>
                                     <div id="signature">
                                         <canvas id="myCanvas" width="150" height="70" style="border:1px solid black"></canvas>
-                                        <button onclick="javascript:signature.clearArea();return false">Effacer</button>
+                                        <div id="buttonCanvas">
+
+                                            <button onclick="javascript:signature.clearArea();return false" title="Annuler la signature" id="clear"><i class="fa fa-remove"></i></button>
+                                        </div>
+                                    </div>
+                                    <div id="buttonValidation">
+                                        <button onclick="javascript:reservation.validSignature();return false" title="Validez la signature" class="validation"><i class="fa fa-check"></i>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <div id="buttonValidation">
-                        <!--<a href="#" class="validation">Réserver</a>-->
-                        <button onclick="javascript:reservation.validSignature();return false" class="validation">Réserver</button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -129,6 +133,7 @@
             <footer>
                 <h1 class="text-center">Réservation en cours ?</h1>
                 <div id="cpt"></div>
+                <div id="station_reservation"></div>
             </footer>
         </div>
     </div>

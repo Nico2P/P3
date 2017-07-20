@@ -60,11 +60,13 @@ var reservation = {
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
             // Display the result in the element
             document.getElementById("cpt").innerHTML = "Réservation disponible pour : " +
-                minutes + "m " + seconds + "s " + " a la station " + sessionStorage.getItem("stationActuel") + ".";
+                minutes + "m " + seconds + "s ";
+            document.getElementById("station_reservation").innerHTML = "Station :" + sessionStorage.getItem("stationActuel") + ".";
             // If the count down is finished, write some text
             if (distance < 0) {
                 clearInterval(x);
                 document.getElementById("cpt").innerHTML = "Aucune reservation";
+                document.getElementById("station_reservation").innerHTML = "";
             }
         }, 1000);
     }
