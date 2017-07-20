@@ -119,6 +119,7 @@ footer {
     top: 560px;
     left: 900px;
     min-width: 130px;
+    width: 130px;
     z-index: 2;
 }
 
