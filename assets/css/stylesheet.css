@@ -219,6 +219,7 @@ footer {
         position: relative;
         top: 560px;
         left: 600px;
+        width: 130px;
         z-index: 2;
     }
     #titre {
@@ -289,7 +290,7 @@ footer {
     #control-container {
         position: relative;
         top: 320px;
-        left: 300px;
+        left: 200px;
         z-index: 2;
     }
     #map {
