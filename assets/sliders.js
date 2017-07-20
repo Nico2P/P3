@@ -10,7 +10,7 @@ var jSliders = {
     //Parametres
     slideSetting: {
         playing: true,
-        duree: 3000,
+        duree: 7000,
         currentSlide: 0
     },
 
