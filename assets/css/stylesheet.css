@@ -6,11 +6,11 @@
 }
 
 .navbar-inverse .navbar-brand {
-    color: #fde7cc;
+    color: black;
 }
 
 .navbar-inverse .navbar-nav>li>a {
-    color: #fde7cc;
+    color: black;
 }
 
 #titre {
@@ -18,7 +18,7 @@
 }
 
 body {
-    background-color: #66b0f0;
+    background-color: white;
     font-family: 'Bitter', serif;
 }
 
@@ -29,7 +29,7 @@ span.next {
 }
 
 #accueil {
-    background-color: #83d0ff;
+    background-color: white;
     height: 600px;
     border-radius: 5px;
     margin-top: 80px;
@@ -49,6 +49,8 @@ span.next {
 }
 
 #maps_info {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     width: 100%;
     margin-top: 20px;
@@ -93,9 +95,14 @@ th {
     color: red;
 }
 
+#annule {
+    display: none;
+    margin-left: 42%;
+}
+
 footer {
     background-color: #83d0ff;
-    height: 100px;
+    height: 130px;
     margin-bottom: 30px;
     border-radius: 5px;
 }
@@ -121,7 +128,7 @@ footer {
     top: 560px;
     left: 900px;
     min-width: 130px;
-    width: 130px;
+    width: 135px;
     z-index: 2;
 }
 
@@ -248,6 +255,9 @@ footer {
         border-left-color: #83d0ff;
         border-right-color: #83d0ff;
     }
+    #annule {
+        margin-left: 37%;
+    }
 }
 
 @media (max-width: 778px) {
@@ -284,7 +294,7 @@ footer {
     .slide img {
         height: 300px;
         width: 300px;
-        margin-left: 35px;
+        margin-left: 10px;
     }
     #slide-container {
         position: relative;
@@ -293,14 +303,22 @@ footer {
     #control-container {
         position: relative;
         top: 320px;
-        left: 200px;
+        left: 100px;
         z-index: 2;
+        width: 150px;
     }
     #map {
-        width: 85%;
+        width: 100%;
+        margin-left: 0px;
+    }
+    #map_infos {
+        margin-top: 5px;
     }
     footer {
         margin-top: 580px;
         height: 150px;
+    }
+    #annule {
+        margin-left: 23%;
     }
 }

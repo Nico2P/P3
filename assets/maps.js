@@ -24,6 +24,15 @@ var mapsVloc = {
         var reponse = ajaxGet("https://api.jcdecaux.com/vls/v1/stations?contract=paris&apiKey=55f0d990654c82851fd70ba88f382a9b69d6b187", mapsVloc.makeMarker);
     },
 
+    toggleBounce: function toggleBounce(marker) {
+        if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+        } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+    },
+
+
     makeMarker: function makeMarker(reponse) {
         var jlist = JSON.parse(reponse);
 
@@ -55,7 +64,6 @@ var mapsVloc = {
             // Gestion des evenements
 
             marker.addListener('click', function (e) {
-
                 // Ajout du contenu au tableau
                 if (this.status === "OPEN") {
                     document.getElementById("status_station").textContent = "Ouvert";
@@ -68,7 +76,7 @@ var mapsVloc = {
                 document.getElementById("velo_station").textContent = this.available_bikes;
                 document.getElementById("parking_station").textContent = this.bike_stands;
                 mapsVloc.mapsVlocSetting.stationActuel = this.title.slice(7);
-
+                mapsVloc.toggleBounce(marker);
                 // Affichage du bouton si il est possible de réserver
                 if (this.available_bikes > 0) {
                     document.getElementById("buttonValidation").style.display = "block";

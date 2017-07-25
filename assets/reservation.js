@@ -43,6 +43,7 @@ var reservation = {
         } else {
             // Malheureusement, localStorage n'est pas disponible
             console.log("Aucune réservation");
+            document.getElementById("annule").style.display = "none";
         }
     },
 
@@ -62,12 +63,22 @@ var reservation = {
             document.getElementById("cpt").innerHTML = "Réservation disponible pour : " +
                 minutes + "m " + seconds + "s ";
             document.getElementById("station_reservation").innerHTML = "Station :" + sessionStorage.getItem("stationActuel") + ".";
+            document.getElementById("annule").style.display = "block";
             // If the count down is finished, write some text
             if (distance < 0) {
                 clearInterval(x);
                 document.getElementById("cpt").innerHTML = "Aucune reservation";
                 document.getElementById("station_reservation").innerHTML = "";
+                document.getElementById("annule").style.display = "none";
             }
         }, 1000);
+    },
+
+    annuleReservation: function annuleReservation() {
+        this.reservationSetting.enCours = "false";
+        sessionStorage.setItem("enCours", "false");
+        sessionStorage.setItem("dateLimite", new Date().getTime());
+        document.getElementById("annule").style.display = "none";
+        location.reload();
     }
 };

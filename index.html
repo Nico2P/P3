@@ -111,11 +111,11 @@
                                         <canvas id="myCanvas" width="150" height="70" style="border:1px solid black"></canvas>
                                         <div id="buttonCanvas">
 
-                                            <button onclick="javascript:signature.clearArea();return false" title="Annuler la signature" id="clear"><i class="fa fa-remove"></i></button>
+                                            <button onclick="javascript:signature.clearArea();return false" title="Effacer" id="clear">Effacer</button>
                                         </div>
                                     </div>
                                     <div id="buttonValidation">
-                                        <button onclick="javascript:reservation.validSignature();return false" title="Validez la signature" class="validation"><i class="fa fa-check"></i>
+                                        <button onclick="javascript:reservation.validSignature();return false" title="Validez la signature" class="validation">Validez <i class="fa fa-check"></i>
                                         </button>
                                     </div>
                                 </td>
@@ -135,6 +135,7 @@
                 <h1 class="text-center">Réservation en cours ?</h1>
                 <div class="text-center" id="cpt"></div>
                 <div class="text-center" id="station_reservation"></div>
+                <button onclick="javascript:reservation.annuleReservation();return false" title="Annuler la reservation" id="annule">Annuler la réservation</button>
             </footer>
             <p>
                 <a href="http://jigsaw.w3.org/css-validator/check/referer">
