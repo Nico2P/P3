@@ -36,7 +36,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#" id="titre">Véloc' dans Paris !</a>
+                    <a class="navbar-brand" href="#page-top" id="titre">Véloc' dans Paris !</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
@@ -69,59 +69,64 @@
         </div>
     </div>
 
-    <!-- Carte et info localisation / canvas signature -->
-    <div class="container">
-        <div class="row" id="reserve">
-            <h1 class="text-center">Recherchez un point de location</h1>
-            <div id="maps_info">
-                <div id="map" class="col-sm-12 col-md-6">
-                </div>
-                <div id="info_station" class="col-sm-12 col-md-6">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th colspan="2" id="nom_station">Sélectionnez une station</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Status</td>
-                                <td id="status_station"></td>
-                            </tr>
-                            <tr>
-                                <td>Adresse</td>
-                                <td id="adresse_station"></td>
-                            </tr>
-                            <tr>
-                                <td>Vélo(s) à loué</td>
-                                <td id="velo_station"></td>
-                            </tr>
-                            <tr>
-                                <td>Stationnement disponible(s)</td>
-                                <td id="place_station"></td>
-                            </tr>
-                            <tr>
-                                <td>Capacité de la station</td>
-                                <td id="parking_station"></td>
-                            </tr>
-                            <tr>
-                                <td>Signature</td>
-                                <td>
-                                    <div id="signature">
-                                        <canvas id="myCanvas" width="150" height="70" style="border:1px solid black"></canvas>
-                                        <div id="buttonCanvas">
 
-                                            <button onclick="javascript:signature.clearArea();return false" title="Effacer" id="clear">Effacer</button>
-                                        </div>
-                                    </div>
-                                    <div id="buttonValidation">
-                                        <button onclick="javascript:reservation.validSignature();return false" title="Validez la signature" class="validation">Validez <i class="fa fa-check"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+    <!-- Carte et info localisation / canvas signature -->
+    <div class="panel panel-default">
+        <div class="container">
+            <div class="panel-heading">
+                <h1 class="text-center panel-title">Recherchez un point de location</h1></div>
+            <div class="panel-body">
+                <div class="row" id="reserve">
+                    <div id="maps_info">
+                        <div id="map" class="col-sm-12 col-md-6">
+                        </div>
+                        <div id="info_station" class="col-sm-12 col-md-6">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" id="nom_station">Sélectionnez une station</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Status</td>
+                                        <td id="status_station"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Adresse</td>
+                                        <td id="adresse_station"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Vélo(s) à loué</td>
+                                        <td id="velo_station"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Stationnement disponible(s)</td>
+                                        <td id="place_station"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Capacité de la station</td>
+                                        <td id="parking_station"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Signature</td>
+                                        <td>
+                                            <div id="signature">
+                                                <canvas id="myCanvas" width="150" height="70" style="border:1px solid black"></canvas>
+                                                <div id="buttonCanvas">
+                                                    <button title="Effacer" id="clear">Effacer</button>
+                                                </div>
+                                            </div>
+                                            <div id="buttonValidation">
+                                                <button title="Validez la signature" id="valid">Validez <i class="fa fa-check"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -129,23 +134,34 @@
 
     <!-- Pied de page
     ================================================== -->
-    <div class="container">
-        <div class="row">
-            <footer>
-                <h1 class="text-center">Réservation en cours ?</h1>
-                <div class="text-center" id="cpt"></div>
-                <div class="text-center" id="station_reservation"></div>
-                <button onclick="javascript:reservation.annuleReservation();return false" title="Annuler la reservation" id="annule">Annuler la réservation</button>
-            </footer>
-            <p>
-                <a href="http://jigsaw.w3.org/css-validator/check/referer">
-                    <img style="border:0;width:88px;height:31px" src="http://www.sanjaywebdesigner.com/articles/wp-content/uploads/2014/07/html5-courses.png" alt="HTML Valide !" />
-                </a>
-                <a href="http://jigsaw.w3.org/css-validator/check/referer">
-                    <img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valide !" />
-                </a>
-            </p>
+
+    <div class="panel panel-default">
+        <div class="container">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <h1 class="text-center ">Réservation en cours ?</h1>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row" id="status">
+                    <footer>
+                        <div class="text-center" id="cpt"></div>
+                        <div class="text-center" id="station_reservation"></div>
+                        <button title="Annuler la reservation" id="annule">Annuler la réservation</button>
+                    </footer>
+                </div>
+            </div>
         </div>
+    </div>
+    <div id="w3c">
+        <p>
+            <a href="http://jigsaw.w3.org/css-validator/check/referer">
+                <img style="border:0;width:88px;height:31px" src="http://www.sanjaywebdesigner.com/articles/wp-content/uploads/2014/07/html5-courses.png" alt="HTML Valide !" />
+            </a>
+            <a href="http://jigsaw.w3.org/css-validator/check/referer">
+                <img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valide !" />
+            </a>
+        </p>
     </div>
 
     <!-- jQuery -->
@@ -159,12 +175,15 @@
     <script type="text/javascript" src="assets/sliders.js"></script>
     <!-- API Google Maps -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmzuGjR6Z9oziQojlSyemjJhNk03IevtY"></script>
+    <!-- info station tableau -->
+    <script type="text/javascript" src="assets/station_info.js"></script>
     <!-- Carte, marqueur & event marqueur -->
     <script type="text/javascript" src="assets/maps.js"></script>
     <!-- Canvas et signature -->
     <script type="text/javascript" src="assets/signature.js"></script>
     <!-- Reservation et verification de signature -->
     <script type="text/javascript" src="assets/reservation.js"></script>
+
 
     <script>
         // Scrollspy fluide
@@ -182,9 +201,10 @@
         $(document).ready(function () {
             jSliders.init();
             signature.initThis();
+            signature.init();
+            reservation.init();
             reservation.saveExist();
             reservation.validPeriod();
-
 
             $(window).load(function () {
                 mapsVloc.getDonnees();

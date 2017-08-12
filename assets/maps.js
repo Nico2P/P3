@@ -6,9 +6,10 @@ var mapsVloc = {
             lat: 48.867215942062155,
             lng: 2.346782684326172
         },
-        stationActuel: ""
+        stationActuel: "",
+        veloDispo: 5,
+        stationSelected: false
     },
-
 
     initMaps: function initMap() {
 
@@ -33,6 +34,27 @@ var mapsVloc = {
     },
 
 
+    setInfo: function setInfo(status, title, adress, available_bike_stands, available_bikes, bike_stands) {
+        station_info.setStatus(status);
+        station_info.setName(title);
+        station_info.setAdress(adress);
+        station_info.setAvailableBikeStands(available_bike_stands);
+        station_info.setAvailable_bikes(available_bikes);
+        station_info.setBikeStand(bike_stands);
+        mapsVloc.mapsVlocSetting.stationActuel = title.slice(7);
+        mapsVloc.mapsVlocSetting.veloDispo = available_bikes;
+        if (available_bikes === 0) {
+            document.getElementById("valid").classList.add("disabled");
+            document.getElementById("valid").style.color = "grey";
+        } else {
+            document.getElementById("valid").style.color = "green";
+            document.getElementById("valid").classList.remove("disabled");
+        }
+        mapsVloc.mapsVlocSetting.stationSelected = true;
+
+    },
+
+
     makeMarker: function makeMarker(reponse) {
         var jlist = JSON.parse(reponse);
 
@@ -52,6 +74,7 @@ var mapsVloc = {
                 bike_stands: jlist[i].bike_stands
             });
 
+
             // Gestion des couleurs de marker en fonction des vélos dispo
 
             if (jlist[i].available_bikes >= 10) {
@@ -61,33 +84,11 @@ var mapsVloc = {
             } else {
                 marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
             }
-            // Gestion des evenements
 
-            marker.addListener('click', function (e) {
-                // Ajout du contenu au tableau
-                if (this.status === "OPEN") {
-                    document.getElementById("status_station").textContent = "Ouvert";
-                } else if (this.status === "CLOSED") {
-                    document.getElementById("status_station").textContent = "Fermé";
-                };
-                document.getElementById("nom_station").textContent = this.title.slice(7);
-                document.getElementById("adresse_station").textContent = this.address;
-                document.getElementById("place_station").textContent = this.available_bike_stands;
-                document.getElementById("velo_station").textContent = this.available_bikes;
-                document.getElementById("parking_station").textContent = this.bike_stands;
-                mapsVloc.mapsVlocSetting.stationActuel = this.title.slice(7);
-                mapsVloc.toggleBounce(marker);
-                // Affichage du bouton si il est possible de réserver
-                if (this.available_bikes > 0) {
-                    document.getElementById("buttonValidation").style.display = "block";
-                } else {
-                    document.getElementById("buttonValidation").style.display = "none";
-                };
-            });
+            // Gestion des evenements
+            marker.addListener('click', function (e) mapsVloc.setInfo(this.status, this.title, this.address, this.available_bike_stands, this.available_bikes, this.bike_stands));
+
         };
-        //debug
-        //console.log(jlist[0]);
-        //debug
     }
 
 }

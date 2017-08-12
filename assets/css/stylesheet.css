@@ -1,18 +1,5 @@
 /* Styles de base */
 
-.navbar-inverse {
-    background-color: #83d0ff;
-    border-color: #66b0f0;
-}
-
-.navbar-inverse .navbar-brand {
-    color: black;
-}
-
-.navbar-inverse .navbar-nav>li>a {
-    color: black;
-}
-
 #titre {
     margin: 0 0 0 70px;
 }
@@ -26,6 +13,10 @@ span.next {
     position: absolute;
     bottom: 0px;
     right: -630px;
+}
+
+.panel {
+    margin: 30px;
 }
 
 #accueil {
@@ -42,10 +33,9 @@ span.next {
 }
 
 #reserve {
-    background-color: #83d0ff;
-    height: 640px;
+    background-color: white;
+    height: 550px;
     border-radius: 5px;
-    margin-top: 30px;
 }
 
 #maps_info {
@@ -57,7 +47,7 @@ span.next {
 }
 
 #info_station {
-    background-color: #83d0ff;
+    background-color: white;
     width: 100%;
 }
 
@@ -65,7 +55,7 @@ table {
     border-color: #4CB5F5;
     border-collapse: collapse;
     border-radius: 5px;
-    background-color: #83d0ff;
+    background-color: white;
     width: 100%;
     height: 100%;
 }
@@ -76,7 +66,7 @@ th {
 
 td,
 th {
-    border: 1px solid #66b0f0;
+    border: 1px solid grey;
     border-radius: 5px;
     width: 50%;
     text-align: center;
@@ -86,9 +76,12 @@ th {
     margin-top: 5px;
 }
 
-#buttonValidation {
-    display: none;
+#valid {
     color: green;
+}
+
+.disabled {
+    cursor: not-allowed;
 }
 
 #clear {
@@ -101,10 +94,12 @@ th {
 }
 
 footer {
-    background-color: #83d0ff;
-    height: 130px;
-    margin-bottom: 30px;
+    background-color: white;
     border-radius: 5px;
+}
+
+#w3c {
+    margin-left: 30px;
 }
 
 
@@ -147,7 +142,8 @@ footer {
     width: 100%;
     height: 100%;
     opacity: 0;
-    z-index: 1;
+    /*z-index: 1;*/
+    display: none;
     -webkit-transition: opacity 1s;
     transition: opacity 1s;
 }
@@ -161,7 +157,8 @@ footer {
 
 .showing {
     opacity: 1;
-    z-index: 2;
+    /*z-index: 2;*/
+    display: block;
     -webkit-transition: opacity 1s;
     transition: opacity 1s;
 }
@@ -248,12 +245,12 @@ footer {
     }
     table {
         width: 100%;
-        border-color: #83d0ff;
+        border-color: grey;
     }
     td,
     th {
-        border-left-color: #83d0ff;
-        border-right-color: #83d0ff;
+        border-left-color: grey;
+        border-right-color: grey;
     }
     #annule {
         margin-left: 37%;

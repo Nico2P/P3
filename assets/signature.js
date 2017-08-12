@@ -5,6 +5,14 @@ var signature = {
         valid: false
     },
 
+    //boutons
+    clearButton: {
+        button: document.getElementById('clear')
+    },
+    validButton: {
+        button: document.getElementById('valid')
+    },
+
     initThis: function InitThis() {
         ctx = document.getElementById('myCanvas').getContext("2d");
 
@@ -50,6 +58,23 @@ var signature = {
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         signature.signatureSetting.valid = false;
     },
+
+    // Gestion des evenements
+    setControls: function setControls() {
+        this.clearButton.button.onclick = function () {
+            signature.clearArea();
+        };
+
+        this.validButton.button.onclick = function () {
+            reservation.validSignature();
+        };
+
+    },
+
+    //Initialisation
+    init: function init() {
+        this.setControls();
+    }
 }
 var mousePressed = false;
 var lastX, lastY;

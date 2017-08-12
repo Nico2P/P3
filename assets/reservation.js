@@ -6,23 +6,38 @@ var reservation = {
         enCours: sessionStorage.getItem("enCours"),
         timeValid: 1200000,
         timeMinutes: "",
-        timeSeconds: ""
+        timeSeconds: "",
+        annulButton: document.getElementById('annule')
+    },
+
+
+    annuleButton: {
+        button: document.getElementById('annule')
     },
 
     validSignature: function validSignature() {
 
-        if (signature.signatureSetting.valid === true) {
-            // appel enregistrement web storage et mise en place compte a rebour
-            alert("Réservation enregistré")
-            signature.clearArea()
-            this.reservationSetting.enCours = true;
-            reservation.save();
-            location.reload();
+        if (mapsVloc.mapsVlocSetting.veloDispo > 0) {
 
+            if (signature.signatureSetting.valid === true && mapsVloc.mapsVlocSetting.stationSelected === true) {
+                // appel enregistrement web storage et mise en place compte a rebour
+                alert("Réservation enregistré");
+                this.reservationSetting.enCours = true;
+                reservation.save();
+                location.reload();
+
+            }
+            if (mapsVloc.mapsVlocSetting.stationSelected === false) {
+                alert("Aucune station sélectionné");
+            } else if (signature.signatureSetting.valid === false) {
+                //affichage message d'erreur
+                alert("Merci de signez");
+            };
         } else {
-            //affichage message d'erreur
-            alert("Merci de signez");
-        };
+            document.getElementById("valid").removeEventListener("click");
+            alert("Aucun vélo disponible");
+        }
+        signature.clearArea();
     },
 
     save: function save() {
@@ -38,11 +53,9 @@ var reservation = {
     saveExist: function saveExist() {
         if (this.reservationSetting.enCours) {
             // Nous pouvons utiliser localStorage
-            console.log("Réservation en cours");
             reservation.validPeriod;
         } else {
             // Malheureusement, localStorage n'est pas disponible
-            console.log("Aucune réservation");
             document.getElementById("annule").style.display = "none";
         }
     },
@@ -80,5 +93,17 @@ var reservation = {
         sessionStorage.setItem("dateLimite", new Date().getTime());
         document.getElementById("annule").style.display = "none";
         location.reload();
+    },
+
+    // Gestion des evenements
+    setControls: function setControls() {
+        this.annuleButton.button.onclick = function () {
+            reservation.annuleReservation();
+        };
+    },
+
+    //Initialisation
+    init: function init() {
+        this.setControls();
     }
 };
